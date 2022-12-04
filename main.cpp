@@ -11,7 +11,11 @@ int main()
     CSV myCSV;
     Dogs d;
     ifstream fOne;
+    try {
     fOne.open("dogs.txt",ios::in);
+    if (fOne.fail()) {
+        throw "Error: could  not open input file ";
+    }
     int records;
     while(fOne){
         myCSV.getLine(fOne);
@@ -26,6 +30,12 @@ int main()
             }
         }
     }
+    }
+    catch (const char* msg) {
+
+        cout << msg << endl;
+    }
+
 //        for (auto i =dogPopulation.begin(); i!=dogPopulation.end(); i++)
 //    {
 //        cout << i-> first << "," << i->second.getDogPop() << endl;
@@ -59,7 +69,7 @@ int main()
             case 3: break;
         }
 
-    } while (request !=3);
+    } while (request !=3 );
 
     return 0;
 }
